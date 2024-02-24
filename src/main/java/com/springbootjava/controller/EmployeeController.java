@@ -1,29 +1,24 @@
 package com.springbootjava.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springbootjava.model.Employee;
-import com.springbootjava.repository.EmployeeRepository;
+import com.springbootjava.service.EmployeeService;
 
 @RestController
 @RequestMapping("/api/v1/")
 public class EmployeeController {
 	@Autowired
-	private EmployeeRepository employeeRepository;
-		
-	//Get All Employee
+	EmployeeService employeeService;
 	
-	@GetMapping("/employees")
-	public List<Employee> getAllEmployees(){
-		return employeeRepository.findAll();
-	}
-	
-	
-	}
-
-
+	//Create Employee REST API
+	@PostMapping("/create/employees")
+   public Employee createEmployees(@RequestBody Employee employee) {
+	   return employeeService.createEmployee(employee);
+	   
+   }
+}
