@@ -72,10 +72,14 @@ public class Department implements Serializable{
 	@JoinColumn(name = "Department_Head",referencedColumnName = "employeeId") // Assuming your department table has a column named "department_id"
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Employee employee;
-	
+
 	@Override
-    public String toString() {
-        return "Department [name=" + name + ", createdDate=" + createdDate + ","
-        		+ " employee=" + employee + "]";
-    }
+	public String toString() {
+		return "Department [departmentId=" + departmentId + ", name=" + name + ", createdDate=" + createdDate
+				+ ", employee=" + employee + ", getDepartmentId()=" + getDepartmentId() + ", getName()=" + getName()
+				+ ", getCreatedDate()=" + getCreatedDate() + ", getEmployee()=" + getEmployee() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
+	
+	
 }

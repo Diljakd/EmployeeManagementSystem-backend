@@ -13,10 +13,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "employee")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "employeeId")
 public class Employee implements Serializable {
 	
 	/**
@@ -137,20 +140,19 @@ public class Employee implements Serializable {
 	@JoinColumn(name = "department", referencedColumnName = "departmentId") // Assuming your department table has a column named "department_id"
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Department department;
+
+	@Override
+	public String toString() {
+		return "Employee [employeeId=" + employeeId + ", name=" + name + ", dateOfBirth=" + dateOfBirth + ", salary="
+				+ salary + ", address=" + address + ", role=" + role + ", joiningDate=" + joiningDate
+				+ ", yearlyBonusPercentage=" + yearlyBonusPercentage + ", reportingManager=" + reportingManager
+				+ ", department=" + department + ", getEmployeeId()=" + getEmployeeId() + ", getName()=" + getName()
+				+ ", getDateOfBirth()=" + getDateOfBirth() + ", getSalary()=" + getSalary() + ", getAddress()="
+				+ getAddress() + ", getRole()=" + getRole() + ", getJoiningDate()=" + getJoiningDate()
+				+ ", getYearlyBonusPercentage()=" + getYearlyBonusPercentage() + ", getReportingManager()="
+				+ getReportingManager() + ", getDepartment()=" + getDepartment() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
 	
-	 @Override
-	    public String toString() {
-	        return "Employee{" +
-	                "employeeId=" + employeeId +
-	                ", name='" + name + '\'' +
-	                ", dateOfBirth=" + dateOfBirth +
-	                ", salary=" + salary +
-	                ", address='" + address + '\'' +
-	                ", role='" + role + '\'' +
-	                ", joiningDate=" + joiningDate +
-	                ", yearlyBonusPercentage=" + yearlyBonusPercentage +
-	                ", reportingManager=" + reportingManager +
-	                ", department=" + department +
-	                '}';
-	    }
+	
 }

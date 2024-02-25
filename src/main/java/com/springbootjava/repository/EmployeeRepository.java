@@ -37,4 +37,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	nativeQuery=true)
 	void updateEmployeeDepartmentDetails(@Param("id")Long id, @Param("departmentId")Long departmentId);
 
+
 }

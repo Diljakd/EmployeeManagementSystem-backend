@@ -37,6 +37,16 @@ public class DepartmentService {
 	 	}
 			return message;
 
-	}	  
+	}
+	/*
+	 * Get All Departments
+	 */
+	public List<Department> getAllDepartments() {
+	    List<Department> departments = departmentRepository.findAll();
+	    departments.forEach((d)->{
+	    	System.out.println(d.getName());
+	    });
+	 return departments;	  
 
+	}
 	}	

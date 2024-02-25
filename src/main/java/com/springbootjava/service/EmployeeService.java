@@ -1,5 +1,8 @@
 package com.springbootjava.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +29,16 @@ public class  EmployeeService  {
 	  */
 	public void updateEmployeeDepartment(Long id, Employee employee) {
     employeeRepository.updateEmployeeDepartmentDetails(id, employee.getDepartment().getDepartmentId());		
-	}	     
+	}
+	/*
+	 * Get All Employees
+	 */
+	public List<Employee> getAllEmployees() {
+	    List<Employee> employees = employeeRepository.findAll();
+	    employees.forEach((e)->{
+	    	System.out.println(e.getName());
+	    });
+	 return employees;
 	       
+}
 }
