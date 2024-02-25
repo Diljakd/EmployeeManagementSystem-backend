@@ -2,12 +2,15 @@ package com.springbootjava.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springbootjava.model.Department;
+import com.springbootjava.model.Employee;
 import com.springbootjava.service.DepartmentService;
 @RestController
 @RequestMapping("/api/v2/")
@@ -20,4 +23,11 @@ public class DepartmentController {
 	public Department addDepartment(@RequestBody Department department) {
 		 return departmentService.addDepartment(department);
 	}
+	
+	//update Department REST API
+		@PutMapping("/update/departments/{id}")
+		    public String updateDepartment(@PathVariable Long id, @RequestBody Department department) {
+			departmentService.updateDepartment(id, department);
+				return "success";
+		    }
 }

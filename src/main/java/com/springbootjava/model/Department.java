@@ -1,5 +1,6 @@
 package com.springbootjava.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,7 +14,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "department")
-public class Department {
+public class Department implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Department() {
 		
 	}
@@ -26,12 +32,12 @@ public class Department {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long departmentId;
+	private Long departmentId;
 	
-	public long getDepartmentId() {
+	public Long getDepartmentId() {
 		return departmentId;
 	}
-	public void setDepartmentId(long departmentId) {
+	public void setDepartmentId(Long departmentId) {
 		this.departmentId = departmentId;
 	}
 	public String getName() {
@@ -63,4 +69,9 @@ public class Department {
 	@JoinColumn(name = "Department_Head") // Assuming your department table has a column named "department_id"
 	private Employee employee;
 	
+	@Override
+    public String toString() {
+        return "Department [name=" + name + ", createdDate=" + createdDate + ","
+        		+ " employee=" + employee + "]";
+    }
 }

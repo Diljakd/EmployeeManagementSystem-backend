@@ -15,5 +15,10 @@ public class  EmployeeService  {
 		//return "success";
 		return employee;
 	}
-
-} 
+	 public void updateEmployee(Long id, Employee employee) {
+		  employeeRepository.updateEmployeeDetails(id,employee.getName(),employee.getAddress(),employee.getJoiningDate(),
+				  employee.getDateOfBirth(),employee.getRole(),employee.getSalary(),employee.getYearlyBonusPercentage(),
+				  employee.getDepartment().getDepartmentId(),employee.getReportingManager().getEmployeeId());
+	 }	     
+	       
+}

@@ -1,9 +1,11 @@
 package com.springbootjava.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,10 +13,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "employee")
-public class Employee {
+public class Employee implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Employee() {
 		
 	}
@@ -32,14 +41,15 @@ public class Employee {
 		this.department = department;
 	}
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long employeeId;
+	private Long employeeId;
 
-	public long getEmployeeId() {
+	public Long getEmployeeId() {
 		return employeeId;
 	}
-	public void setEmployeeId(long employeeId) {
+	public void setEmployeeId(Long employeeId) {
 		this.employeeId = employeeId;
 	}
 	public String getName() {
@@ -120,10 +130,25 @@ public class Employee {
 	
 	@ManyToOne
     @JoinColumn(name = "reporting_manager")
-    private Employee reportingManager;
+	private Employee reportingManager;
 	
 	@ManyToOne
 	@JoinColumn(name = "department") // Assuming your department table has a column named "department_id"
 	private Department department;
 	
+	 @Override
+	    public String toString() {
+	        return "Employee{" +
+	                "employeeId=" + employeeId +
+	                ", name='" + name + '\'' +
+	                ", dateOfBirth=" + dateOfBirth +
+	                ", salary=" + salary +
+	                ", address='" + address + '\'' +
+	                ", role='" + role + '\'' +
+	                ", joiningDate=" + joiningDate +
+	                ", yearlyBonusPercentage=" + yearlyBonusPercentage +
+	                ", reportingManager=" + reportingManager +
+	                ", department=" + department +
+	                '}';
+	    }
 }
