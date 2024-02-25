@@ -2,6 +2,7 @@ package com.springbootjava.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -30,4 +31,10 @@ public class DepartmentController {
 			departmentService.updateDepartment(id, department);
 				return "success";
 		    }
+	//delete Department REST API
+	@DeleteMapping("/delete/departments/{id}")
+	public String deleteDepartment(@PathVariable Long id) {
+		return departmentService.deleteDepartment(id);
+	}
+		
 }

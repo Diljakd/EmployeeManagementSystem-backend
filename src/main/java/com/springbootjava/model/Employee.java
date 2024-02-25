@@ -128,12 +128,14 @@ public class Employee implements Serializable {
 	@Column(name = "yearly_bonus_percentage")
 	private long yearlyBonusPercentage;
 	
-	@ManyToOne
-    @JoinColumn(name = "reporting_manager")
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reporting_manager", referencedColumnName = "employeeId")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Employee reportingManager;
 	
-	@ManyToOne
-	@JoinColumn(name = "department") // Assuming your department table has a column named "department_id"
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "department", referencedColumnName = "departmentId") // Assuming your department table has a column named "department_id"
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Department department;
 	
 	 @Override

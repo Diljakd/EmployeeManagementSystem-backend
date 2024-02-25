@@ -18,6 +18,13 @@ public interface DepartmentRepository extends JpaRepository<Department, Long>{
 	@Modifying
 	@Query(value ="UPDATE department d SET d.name =:name, d.created_date =:createdDate, d.department_head =:employee where d.department_id=:id",
 	nativeQuery=true)
-	void updateDepartmentDetails(@Param("id") Long id, @Param("name") String name,@Param("createdDate") Date createdDate,@Param("employee") Long employee); 
+	void updateDepartmentDetails(@Param("id") Long id, @Param("name") String name,@Param("createdDate") Date createdDate,@Param("employee") Long employee);
+
+	
+	@Transactional
+	@Modifying
+	@Query(value ="DELETE from department where department.department_id=:id",nativeQuery=true)
+	void deleteDepartmentDetails(@Param("id")Long id);
+
 
 }

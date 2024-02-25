@@ -25,5 +25,9 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	 void updateEmployeeDetails(@Param("id") Long id, @Param("name") String name, @Param("address") String address,@Param("joiningDate") Date joiningDate,
 			 @Param("dateOfBirth") Date dateOfBirth, @Param("role") String role,@Param("salary") long salary,@Param("yearlyBonusPercentage") 
 	 long yearlyBonusPercentage, @Param("department") long department,@Param("reportingManager") long reportingManager );
+	
+	@Transactional
+	@Query(value = " SELECT * from employee e where e.department = :id",nativeQuery=true)
+	List<Employee> findEmployeeByDeptId(@Param("id") Long id);
 
 }

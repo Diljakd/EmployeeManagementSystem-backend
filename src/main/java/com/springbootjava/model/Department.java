@@ -5,12 +5,15 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "department")
@@ -65,8 +68,9 @@ public class Department implements Serializable{
 	@Column(name = "created_date")
 	private Date createdDate;
 	
-	@ManyToOne
-	@JoinColumn(name = "Department_Head") // Assuming your department table has a column named "department_id"
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Department_Head",referencedColumnName = "employeeId") // Assuming your department table has a column named "department_id"
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Employee employee;
 	
 	@Override
