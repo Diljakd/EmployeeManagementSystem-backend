@@ -1,8 +1,12 @@
 package com.springbootjava.service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.springbootjava.model.Department;
@@ -49,4 +53,33 @@ public class DepartmentService {
 	 return departments;	  
 
 	}
+	/*
+	public List<Department> getEmployeesByDepartment(Long id, String expand) {
+        List<Department> department = departmentRepository.findByIdWithEmployees(id);
+
+		if ("employee".equals(expand)) {
+            for(Department dept :department) {
+                List<Employee> employee = employeeRepository.findEmployeeByDeptId(id);
+
+            	dept.getDepartmentId();
+            	dept.getName();
+            	dept.getCreatedDate();
+            	
+             
+            for(Employee emp :employee) {
+            	emp.getName();
+            	emp.getRole();
+            	emp.getSalary();
+            	employee.add(emp);
+            	dept.addEmployee(emp);
+            }
+        	department.add(dept);
+            }
+           
+	}
+		return department;
+		
+		
 	}	
+	*/
+}

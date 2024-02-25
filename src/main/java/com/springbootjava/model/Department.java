@@ -1,7 +1,9 @@
 package com.springbootjava.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -72,7 +74,7 @@ public class Department implements Serializable{
 	@JoinColumn(name = "Department_Head",referencedColumnName = "employeeId") // Assuming your department table has a column named "department_id"
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Employee employee;
-
+	
 	@Override
 	public String toString() {
 		return "Department [departmentId=" + departmentId + ", name=" + name + ", createdDate=" + createdDate
@@ -80,6 +82,7 @@ public class Department implements Serializable{
 				+ ", getCreatedDate()=" + getCreatedDate() + ", getEmployee()=" + getEmployee() + ", getClass()="
 				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
+	
 	
 	
 }

@@ -41,4 +41,12 @@ public class  EmployeeService  {
 	 return employees;
 	       
 }
+	public List<Employee> listEmployees() {
+
+		List<Employee> employees = employeeRepository.findAll();
+
+		//return employeeRepository.findEmployeeNameAndId();
+		
+		return employees;
+	}
 }

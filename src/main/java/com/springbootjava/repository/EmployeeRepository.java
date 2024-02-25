@@ -37,5 +37,10 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	nativeQuery=true)
 	void updateEmployeeDepartmentDetails(@Param("id")Long id, @Param("departmentId")Long departmentId);
 
+	
+	@Transactional
+	@Query(value = "SELECT employee.employee_id, employee.name FROM employee", nativeQuery = true)
+	List<Employee> findEmployeeNameAndId();
+
 
 }

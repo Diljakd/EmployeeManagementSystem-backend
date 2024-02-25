@@ -1,6 +1,7 @@
 package com.springbootjava.controller;
 
 import java.util.List;
+import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,8 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springbootjava.model.Department;
 import com.springbootjava.model.Employee;
 import com.springbootjava.service.EmployeeService;
 
@@ -45,4 +48,14 @@ public class EmployeeController {
     public List<Employee> getAllEmployees() {
         return employeeService.getAllEmployees();
     }
+	
+	//List Employee Name and ID
+	@GetMapping("/list/employees")
+    public List<Employee> listEmployees(@RequestParam(name = "lookup", defaultValue = "false") boolean lookup) {
+		if (lookup) {
+            return employeeService.listEmployees();
+        } else {
+        	return Collections.emptyList(); // or return an empty list
+        }
+	}
 }

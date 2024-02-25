@@ -1,6 +1,8 @@
 package com.springbootjava.repository;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -11,6 +13,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.springbootjava.model.Department;
+import com.springbootjava.model.Employee;
 @Repository
 public interface DepartmentRepository extends JpaRepository<Department, Long>{
 	
@@ -25,6 +28,10 @@ public interface DepartmentRepository extends JpaRepository<Department, Long>{
 	@Modifying
 	@Query(value ="DELETE from department where department.department_id=:id",nativeQuery=true)
 	void deleteDepartmentDetails(@Param("id")Long id);
+
+	@Transactional
+	@Query(value = " SELECT * from department d where d.department_id =:id",nativeQuery=true)
+	List<Department> findByIdWithEmployees(@Param("id") Long id);
 
 
 }
