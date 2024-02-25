@@ -3,6 +3,7 @@ package com.springbootjava.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springbootjava.model.Department;
 import com.springbootjava.model.Employee;
 import com.springbootjava.repository.EmployeeRepository;
 @Service
@@ -19,6 +20,12 @@ public class  EmployeeService  {
 		  employeeRepository.updateEmployeeDetails(id,employee.getName(),employee.getAddress(),employee.getJoiningDate(),
 				  employee.getDateOfBirth(),employee.getRole(),employee.getSalary(),employee.getYearlyBonusPercentage(),
 				  employee.getDepartment().getDepartmentId(),employee.getReportingManager().getEmployeeId());
-	 }	     
+	 }
+	 /*
+	  * Update Employees Department
+	  */
+	public void updateEmployeeDepartment(Long id, Employee employee) {
+    employeeRepository.updateEmployeeDepartmentDetails(id, employee.getDepartment().getDepartmentId());		
+	}	     
 	       
 }

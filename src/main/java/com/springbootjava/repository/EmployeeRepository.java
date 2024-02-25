@@ -30,4 +30,11 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	@Query(value = " SELECT * from employee e where e.department = :id",nativeQuery=true)
 	List<Employee> findEmployeeByDeptId(@Param("id") Long id);
 
+	
+	@Transactional
+	@Modifying
+	@Query(value ="UPDATE employee e SET e.department=:departmentId where e.employee_id=:id",
+	nativeQuery=true)
+	void updateEmployeeDepartmentDetails(@Param("id")Long id, @Param("departmentId")Long departmentId);
+
 }
