@@ -1,2 +1,3 @@
 /target/
-application.properties
+# Ignore application properties file in src/main/resources
+src/main/resources/application.properties
